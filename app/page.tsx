@@ -85,17 +85,17 @@ export default function Home() {
               </div>
               
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center gap-6 mt-10 pt-10 border-t border-border">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={20} className="text-green-500" />
+              <div className="flex flex-wrap items-center gap-5 mt-8 pt-8 border-t border-border">
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 size={18} className="text-green-500 dark:text-green-400" />
                   <span className="text-sm text-muted-foreground">500+ Projects Delivered</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={20} className="text-green-500" />
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 size={18} className="text-green-500 dark:text-green-400" />
                   <span className="text-sm text-muted-foreground">99% Client Satisfaction</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={20} className="text-green-500" />
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 size={18} className="text-green-500 dark:text-green-400" />
                   <span className="text-sm text-muted-foreground">24/7 Support</span>
                 </div>
               </div>
@@ -123,14 +123,14 @@ export default function Home() {
                 </div>
                 
                 {/* Floating Icons */}
-                <div className="absolute top-10 right-10 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-lg animate-float">
-                  <Brain size={32} className="text-primary" />
+                <div className="absolute top-10 right-10 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-lg dark:shadow-slate-900/50 animate-float border border-gray-100 dark:border-slate-700">
+                  <Brain size={28} className="text-sky-500 dark:text-sky-400" />
                 </div>
-                <div className="absolute bottom-20 left-0 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-lg animate-float" style={{ animationDelay: '-2s' }}>
-                  <Cloud size={32} className="text-primary" />
+                <div className="absolute bottom-20 left-0 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-lg dark:shadow-slate-900/50 animate-float border border-gray-100 dark:border-slate-700" style={{ animationDelay: '-2s' }}>
+                  <Cloud size={28} className="text-sky-500 dark:text-sky-400" />
                 </div>
-                <div className="absolute top-1/2 right-0 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-lg animate-float" style={{ animationDelay: '-4s' }}>
-                  <Code size={32} className="text-primary" />
+                <div className="absolute top-1/2 right-0 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-lg dark:shadow-slate-900/50 animate-float border border-gray-100 dark:border-slate-700" style={{ animationDelay: '-4s' }}>
+                  <Code size={28} className="text-sky-500 dark:text-sky-400" />
                 </div>
               </div>
             </motion.div>
@@ -202,26 +202,26 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="section section-alt">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <span className="section-badge mb-4">
+              <span className="section-badge mb-5">
                 <Award size={16} />
                 Why Nomads
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold mb-5">
                 Your Trusted Technology Partner
               </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
+              <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
                 We combine deep technical expertise with a genuine commitment to your success. 
                 Our team doesn&apos;t just build solutions — we become an extension of your team.
               </p>
               
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {[
                   { icon: Users, title: 'Expert Team', desc: '50+ engineers, designers, and consultants with deep domain expertise' },
                   { icon: TrendingUp, title: 'Proven Results', desc: '500+ successful projects with measurable business impact' },
@@ -237,11 +237,11 @@ export default function Home() {
                     viewport={{ once: true }}
                   >
                     <div className="icon-box flex-shrink-0">
-                      <item.icon size={24} />
+                      <item.icon size={22} className="text-sky-500 dark:text-sky-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm">{item.desc}</p>
+                      <h4 className="font-semibold mb-1.5">{item.title}</h4>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -255,22 +255,22 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="grid grid-cols-2 gap-4">
-                <Card className="p-6 bg-gradient-to-br from-sky-500 to-blue-600 text-white border-none">
-                  <div className="text-4xl font-bold mb-2">99%</div>
-                  <p className="text-white/90">Client Satisfaction Rate</p>
+              <div className="grid grid-cols-2 gap-5">
+                <Card className="bg-gradient-to-br from-sky-500 to-blue-600 text-white border-none">
+                  <div className="text-3xl md:text-4xl font-bold mb-1.5">99%</div>
+                  <p className="text-white/90 text-sm">Client Satisfaction Rate</p>
                 </Card>
-                <Card className="p-6 mt-8">
-                  <div className="stat-number text-3xl mb-2">50+</div>
-                  <p className="text-muted-foreground">Expert Team Members</p>
+                <Card className="mt-8">
+                  <div className="stat-number text-2xl md:text-3xl mb-1.5">50+</div>
+                  <p className="text-muted-foreground text-sm">Expert Team Members</p>
                 </Card>
-                <Card className="p-6">
-                  <div className="stat-number text-3xl mb-2">200+</div>
-                  <p className="text-muted-foreground">Happy Clients</p>
+                <Card>
+                  <div className="stat-number text-2xl md:text-3xl mb-1.5">200+</div>
+                  <p className="text-muted-foreground text-sm">Happy Clients</p>
                 </Card>
-                <Card className="p-6 mt-8 bg-gradient-to-br from-teal-500 to-cyan-600 text-white border-none">
-                  <div className="text-4xl font-bold mb-2">24/7</div>
-                  <p className="text-white/90">Support Available</p>
+                <Card className="mt-8 bg-gradient-to-br from-teal-500 to-cyan-600 text-white border-none">
+                  <div className="text-3xl md:text-4xl font-bold mb-1.5">24/7</div>
+                  <p className="text-white/90 text-sm">Support Available</p>
                 </Card>
               </div>
             </motion.div>
@@ -288,7 +288,7 @@ export default function Home() {
             description="A structured approach that ensures successful project delivery, every time."
           />
           
-          <div className="grid md:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-5 gap-5 lg:gap-6">
             {process.map((step, index) => (
               <motion.div
                 key={step.step}
@@ -298,16 +298,16 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="text-center h-full relative">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-xl flex items-center justify-center mx-auto mb-4">
+                <Card className="text-center h-full relative" padding="sm">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-lg flex items-center justify-center mx-auto mb-3">
                     {step.step}
                   </div>
-                  <h4 className="font-semibold mb-2">{step.title}</h4>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <h4 className="font-semibold mb-2 text-sm">{step.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
                 </Card>
                 {index < process.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight size={20} className="text-primary" />
+                  <div className="hidden md:block absolute top-1/2 -right-2.5 transform -translate-y-1/2 z-10">
+                    <ArrowRight size={18} className="text-sky-500 dark:text-sky-400" />
                   </div>
                 )}
               </motion.div>
