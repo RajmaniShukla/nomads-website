@@ -1,86 +1,76 @@
-"use client";
+'use client';
 
-import { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import Link from 'next/link';
+import { LucideIcon } from 'lucide-react';
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
-type ButtonSize = "sm" | "md" | "lg" | "xl";
-
-interface BaseProps {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  children: ReactNode;
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  icon?: LucideIcon;
+  iconPosition?: 'left' | 'right';
   className?: string;
-  icon?: ReactNode;
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  external?: boolean;
 }
 
-type ButtonProps = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: never };
-type LinkProps = BaseProps & AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
-
-type Props = ButtonProps | LinkProps;
-
-const variants: Record<ButtonVariant, string> = {
-  primary: `
-    bg-gradient-to-r from-indigo-600 to-purple-600 text-white
-    hover:from-indigo-500 hover:to-purple-500
-    shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/30
-    active:scale-[0.98]
-  `,
-  secondary: `
-    bg-gray-900 dark:bg-white text-white dark:text-gray-900
-    hover:bg-gray-800 dark:hover:bg-gray-100
-    shadow-lg hover:shadow-xl
-  `,
-  outline: `
-    border-2 border-indigo-500 text-indigo-600 dark:text-indigo-400
-    hover:bg-indigo-50 dark:hover:bg-indigo-950
-    hover:border-indigo-400
-  `,
-  ghost: `
-    text-gray-600 dark:text-gray-400
-    hover:text-gray-900 dark:hover:text-white
-    hover:bg-gray-100 dark:hover:bg-gray-800
-  `,
-};
-
-const sizes: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-sm gap-1.5",
-  md: "px-6 py-2.5 text-sm gap-2",
-  lg: "px-8 py-3 text-base gap-2",
-  xl: "px-10 py-4 text-lg gap-3",
-};
-
 export default function Button({
-  variant = "primary",
-  size = "md",
   children,
-  className = "",
-  icon,
-  ...props
-}: Props) {
-  const baseStyles = `
-    inline-flex items-center justify-center
-    font-semibold rounded-xl
-    transition-all duration-300 ease-out
-    focus:outline-none focus:ring-4 focus:ring-indigo-500/20
-    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none
-  `;
+  variant = 'primary',
+  size = 'md',
+  href,
+  icon: Icon,
+  iconPosition = 'right',
+  className = '',
+  onClick,
+  type = 'button',
+  disabled = false,
+  external = false,
+}: ButtonProps) {
+  const baseClasses = 'btn';
+  const variantClasses = {
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    outline: 'btn-outline',
+    ghost: 'btn-ghost',
+  };
+  const sizeClasses = {
+    sm: 'text-xs py-2 px-3',
+    md: 'text-sm py-3 px-5',
+    lg: 'text-base py-4 px-8',
+  };
 
-  const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
-  if ("href" in props && props.href) {
-    const { href, ...anchorProps } = props as LinkProps;
+  const content = (
+    <>
+      {Icon && iconPosition === 'left' && <Icon size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20} />}
+      {children}
+      {Icon && iconPosition === 'right' && <Icon size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20} />}
+    </>
+  );
+
+  if (href) {
+    if (external) {
+      return (
+        <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+          {content}
+        </a>
+      );
+    }
     return (
-      <a href={href} className={combinedClassName} {...anchorProps}>
-        {icon && <span>{icon}</span>}
-        {children}
-      </a>
+      <Link href={href} className={classes}>
+        {content}
+      </Link>
     );
   }
 
   return (
-    <button className={combinedClassName} {...(props as ButtonProps)}>
-      {icon && <span>{icon}</span>}
-      {children}
+    <button type={type} className={classes} onClick={onClick} disabled={disabled}>
+      {content}
     </button>
   );
 }

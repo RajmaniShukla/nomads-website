@@ -1,106 +1,260 @@
-import { Button, Card, SectionWrapper, Badge } from "@/app/components/ui";
-import { aiSolutions, industries } from "@/app/data";
+'use client';
 
-export const metadata = {
-  title: "AI Solutions | Nomads",
-  description: "Discover our advanced AI capabilities including Generative AI, Computer Vision, NLP, and more.",
+import { 
+  Brain, 
+  MessageSquare, 
+  TrendingUp, 
+  Eye, 
+  FileText, 
+  Sparkles, 
+  Zap,
+  CheckCircle2,
+  ArrowRight,
+  Lightbulb,
+  Target,
+  Cpu
+} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Button, SectionHeader, Card } from '../components/ui';
+import { aiSolutions } from '../data';
+
+const iconMap: { [key: string]: React.ElementType } = {
+  MessageSquare, TrendingUp, Eye, FileText, Sparkles, Zap, Brain,
 };
 
 export default function AISolutionsPage() {
+  const benefits = [
+    {
+      icon: Target,
+      title: 'Increased Efficiency',
+      description: 'Automate repetitive tasks and streamline workflows to boost productivity by up to 40%.',
+    },
+    {
+      icon: Lightbulb,
+      title: 'Better Decisions',
+      description: 'Leverage data-driven insights to make smarter, faster business decisions.',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Scalable Growth',
+      description: 'AI solutions that grow with your business without proportional cost increases.',
+    },
+    {
+      icon: Cpu,
+      title: 'Competitive Edge',
+      description: 'Stay ahead of the competition with cutting-edge AI capabilities.',
+    },
+  ];
+
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-gray-950 via-indigo-950 to-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 tech-grid opacity-20" />
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-indigo-600/20 rounded-full blur-[100px]" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge variant="primary" className="mb-6">🧠 Artificial Intelligence</Badge>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Advanced AI Solutions
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Harness the power of artificial intelligence to transform your business. 
-            From generative AI to computer vision, we build intelligent systems that deliver results.
-          </p>
+      {/* Hero Section */}
+      <section className="page-hero relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="blob blob-primary w-[500px] h-[500px] -top-20 -right-20" />
+          <div className="blob blob-accent w-[300px] h-[300px] bottom-0 left-10" />
+        </div>
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="section-badge mb-4">
+              <Brain size={16} />
+              AI Solutions
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Intelligent Technology for <span className="text-primary">Smarter Business</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Harness the power of artificial intelligence to automate processes, 
+              unlock insights, and transform customer experiences.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* AI Capabilities */}
-      <SectionWrapper title="Our AI Capabilities" subtitle="What We Offer">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {aiSolutions.map((solution) => (
-            <Card key={solution.id} className="p-6 group" gradient>
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                {solution.icon}
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                {solution.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {solution.description}
-              </p>
-              <div>
-                <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Use Cases:</p>
-                <div className="flex flex-wrap gap-2">
-                  {solution.useCases.map((useCase) => (
-                    <Badge key={useCase} variant="primary">{useCase}</Badge>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </SectionWrapper>
+      {/* AI Benefits */}
+      <section className="section">
+        <div className="container">
+          <SectionHeader
+            badge="Why AI?"
+            badgeIcon={Sparkles}
+            title="The AI Advantage"
+            description="Discover how artificial intelligence can revolutionize your business operations."
+          />
 
-      {/* Technology Stack */}
-      <SectionWrapper
-        title="AI Technology Stack"
-        subtitle="Powered By"
-        className="bg-gray-50 dark:bg-gray-900/50"
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {[
-            "OpenAI GPT-4", "Claude", "LangChain", "TensorFlow", "PyTorch", "YOLO",
-            "Hugging Face", "Stable Diffusion", "AutoGPT", "LangGraph", "MLflow", "Vertex AI"
-          ].map((tech) => (
-            <div key={tech} className="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 text-center hover:border-indigo-500 transition-colors">
-              <span className="text-sm font-medium text-gray-900 dark:text-white">{tech}</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="text-center h-full">
+                  <div className="icon-box icon-box-gradient mx-auto mb-4">
+                    <benefit.icon size={28} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Solutions Grid */}
+      <section className="section section-alt">
+        <div className="container">
+          <SectionHeader
+            badge="Solutions"
+            badgeIcon={Cpu}
+            title="Our AI Capabilities"
+            description="Purpose-built AI solutions designed to solve real business challenges."
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {aiSolutions.map((solution, index) => {
+              const Icon = iconMap[solution.icon] || Brain;
+              
+              return (
+                <motion.div
+                  key={solution.id}
+                  id={solution.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="h-full" highlight>
+                    <div className="icon-box icon-box-gradient mb-5">
+                      <Icon size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold mb-3">{solution.title}</h3>
+                    <p className="text-muted-foreground mb-6">{solution.description}</p>
+                    
+                    <div className="mb-6">
+                      <h4 className="font-semibold text-sm mb-3 text-primary">Key Benefits</h4>
+                      <ul className="space-y-2">
+                        {solution.benefits.map((benefit, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 size={16} className="text-green-500 flex-shrink-0" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-sm mb-3">Use Cases</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {solution.useCases.map((useCase, i) => (
+                          <span key={i} className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                            {useCase}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="section">
+        <div className="container">
+          <SectionHeader
+            badge="Implementation"
+            badgeIcon={Zap}
+            title="From Concept to Production"
+            description="Our structured approach ensures successful AI implementation every time."
+          />
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { step: 1, title: 'Discovery', desc: 'Understand your data, processes, and business objectives.' },
+              { step: 2, title: 'Design', desc: 'Create AI architecture and select optimal algorithms.' },
+              { step: 3, title: 'Develop', desc: 'Build, train, and validate models with your data.' },
+              { step: 4, title: 'Deploy', desc: 'Integrate AI into your systems with monitoring.' },
+            ].map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="text-center h-full relative">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-xl flex items-center justify-center mx-auto mb-4">
+                    {item.step}
+                  </div>
+                  <h4 className="font-semibold mb-2">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Stats */}
+      <section className="py-16 bg-gradient-to-r from-sky-500 to-blue-600">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: '50+', label: 'AI Projects Delivered' },
+              { number: '95%', label: 'Model Accuracy' },
+              { number: '40%', label: 'Average Efficiency Gain' },
+              { number: '10x', label: 'Faster Processing' },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.number}</div>
+                <p className="text-white/80">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-br from-sky-500 via-blue-600 to-blue-700">
+        <div className="container">
+          <motion.div
+            className="text-center max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Unlock the Power of AI?
+            </h2>
+            <p className="text-white/90 text-lg mb-10">
+              Let&apos;s explore how artificial intelligence can transform your business.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button href="/contact" size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100" icon={ArrowRight}>
+                Schedule a Consultation
+              </Button>
+              <Button href="/portfolio" size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                View AI Case Studies
+              </Button>
             </div>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* Industries */}
-      <SectionWrapper title="AI Across Industries" subtitle="Where We Apply AI">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {industries.slice(0, 4).map((industry) => (
-            <Card key={industry.id} className="p-6">
-              <div className="text-3xl mb-3">{industry.icon}</div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{industry.name}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{industry.description}</p>
-              <ul className="space-y-1">
-                {industry.solutions.slice(0, 3).map((sol) => (
-                  <li key={sol} className="text-xs text-indigo-600 dark:text-indigo-400">• {sol}</li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Build Your AI Solution?
-          </h2>
-          <p className="text-xl text-white/80 mb-8">
-            Let&apos;s explore how AI can transform your business operations.
-          </p>
-          <Button href="/contact" variant="secondary" size="xl">
-            Start Your AI Journey
-          </Button>
+          </motion.div>
         </div>
       </section>
     </>
